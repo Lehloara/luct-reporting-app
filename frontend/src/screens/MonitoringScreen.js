@@ -7,7 +7,7 @@ import SearchBar from '../components/SearchBar';
 import ReportCard from '../components/ReportCard';
 
 // ✅ Use your NEW IP address
-const BACKEND_URL = 'http://192.168.43.121:5000/api/reports/excel'; 
+const BACKEND_URL = 'https://luct-reporting-app-bmx1.onrender.com/api/reports/excel'; 
 
 export default function MonitoringScreen() {
   const { role, user, registerSub } = useAuth();
