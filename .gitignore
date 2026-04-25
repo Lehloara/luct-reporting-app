@@ -1,0 +1,11 @@
+node_modules/
+backend/node_modules/
+.expo/
+dist/
+*.apk
+*.aab
+.env
+backend/serviceAccountKey.json
+npm-debug.log*
+.DS_Store
+Thumbs.db
