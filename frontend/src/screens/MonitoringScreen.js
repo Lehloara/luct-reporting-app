@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity, Alert, Linking } from 'react-native';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
+import { auth, db } from '../../config/firebase';
 import { useAuth } from '../context/AuthContext';
 import SearchBar from '../components/SearchBar';
 import ReportCard from '../components/ReportCard';
 
-// ✅ Use your NEW IP address
 const BACKEND_URL = 'https://luct-reporting-app-bmx1.onrender.com/api/reports/excel'; 
 
 export default function MonitoringScreen() {

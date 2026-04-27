@@ -1,13 +1,7 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  useRef
-} from "react";
+import React, {createContext,useState,useEffect,useContext,useRef} from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../config/firebase";
+import { auth, db } from '../config/firebase';
 
 const AuthContext = createContext({});
 export const useAuth = () => useContext(AuthContext);
@@ -19,7 +13,6 @@ export const AuthProvider = ({ children }) => {
 
   const subsRef = useRef([]);
 
-  // Register subscription (safe cleanup helper)
   const registerSub = (unsub) => {
     subsRef.current.push(unsub);
   };
@@ -50,7 +43,7 @@ export const AuthProvider = ({ children }) => {
         }
       } catch (error) {
         console.log("AuthContext error:", error);
-        setRole("student"); // fallback prevents blank screen
+        setRole("student");
       }
 
       setLoading(false);
@@ -71,7 +64,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // 🔥 IMPORTANT: prevents Expo Web blank screen
+
   if (loading) {
     return null;
   }

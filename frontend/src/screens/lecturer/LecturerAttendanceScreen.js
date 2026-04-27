@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator, Alert } from 'react-native';
 import { collection, query, where, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { db } from "../../config/firebase";
 import { useAuth } from '../../context/AuthContext';
 import { Picker } from '@react-native-picker/picker';
 
@@ -12,7 +12,6 @@ export default function LecturerAttendanceScreen() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 1. Load all classes assigned to this lecturer by the PL
   useEffect(() => {
     const q = query(collection(db, 'courses'), where('assignedLecturerId', '==', user.uid));
     const unsub = onSnapshot(q, (snap) => {
@@ -22,7 +21,6 @@ export default function LecturerAttendanceScreen() {
     return unsub;
   }, [user, registerSub]);
 
-  // 2. When a class is selected, load all students registered in that classCode
   useEffect(() => {
     if (!selectedClassCode) { 
       setStudents([]); 
@@ -98,7 +96,6 @@ export default function LecturerAttendanceScreen() {
         </View>
       </View>
 
-      {/* Student List */}
       {loading ? (
         <ActivityIndicator size="large" color="#007AFF" style={{ marginTop: 20 }} />
       ) : !selectedClassCode ? (

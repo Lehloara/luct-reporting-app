@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity, Alert } from 'react-native';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { db } from  "../../config/firebase";
 import { useAuth } from '../../context/AuthContext';
 import SearchBar from '../../components/SearchBar';
 import * as FileSystem from 'expo-file-system/legacy';

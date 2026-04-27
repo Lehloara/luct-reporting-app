@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Alert, StyleSheet, ActivityIndicator, Keyboard, Platform, TextInput } from 'react-native'; // ✅ Added TextInput
+import { View, Text, ScrollView, TouchableOpacity, Alert, StyleSheet, ActivityIndicator, Keyboard, Platform, TextInput } from 'react-native'; 
 import { Picker } from '@react-native-picker/picker';
 import { collection, addDoc, doc, getDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../../config/firebase';
+import { auth, db } from "../../config/firebase";
 import FormField from '../../components/FormField';
 
 const FACULTIES = [

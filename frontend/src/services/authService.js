@@ -15,7 +15,7 @@ export const register = async (email, password, name, role, faculty, classCode =
     name,
     role,
     faculty,
-    classCode, // ✅ Only students get a value here
+    classCode, 
     createdAt: new Date().toISOString()
   });
   return res.user;

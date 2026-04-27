@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TextInput, TouchableOpacity, Alert, StyleSheet, ActivityIndicator, Keyboard } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { collection, setDoc, doc, onSnapshot, query, where, serverTimestamp, getDocs } from 'firebase/firestore'; 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth, } from '../../context/AuthContext';
+import { db } from "../../config/firebase";
 
 export default function PlCourseManagement() {
   const { user, registerSub } = useAuth();

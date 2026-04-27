@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet, Alert, Modal, TextInput } from 'react-native';
 import { collection, query, where, addDoc, onSnapshot, getDocs, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { db } from "../../config/firebase";
 import { useAuth } from '../../context/AuthContext';
 import SearchBar from '../../components/SearchBar';
 
