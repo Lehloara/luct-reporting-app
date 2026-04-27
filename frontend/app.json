@@ -20,10 +20,16 @@
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.lehloara.luctreportingapp"
     },
     "web": {
       "favicon": "./assets/images/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fef4e471-fc9b-4f45-b238-cbad9d1f0c9e"
+      }
     }
   }
 }
