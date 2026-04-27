@@ -12,10 +12,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'LUCT Reporting Backend is running' });
+app.get("/", (req, res) => {
+  res.json({ status: "ok", message: "API is live" });
 });
-
 
 app.use('/api/reports', exportRoutes);
 
