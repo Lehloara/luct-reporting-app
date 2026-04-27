@@ -1,10 +1,12 @@
-import { initializeApp } from 'firebase/app';
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { Platform } from "react-native";
+import { getAuth } from "firebase/auth";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAmvAQZ6-sWL2tSPGqTkgKvQyJQi9nHi4Q",
+  apiKey: "AIzaSyAmvAQZ6-sWL2tSPGqTkgKvQJQi9nHi4Q",
   authDomain: "luct-reporting.firebaseapp.com",
   projectId: "luct-reporting",
   storageBucket: "luct-reporting.firebasestorage.app",
@@ -14,9 +16,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
-export const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage)
-});
+export const auth =
+  Platform.OS === "web"
+    ? getAuth(app)
+    : initializeAuth(app, {
+        persistence: getReactNativePersistence(AsyncStorage)
+      });
 
 export const db = getFirestore(app);

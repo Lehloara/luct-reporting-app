@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ActivityIndicator, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
+
 import { useAuth } from '../context/AuthContext';
 import HeaderLogoutButton from '../components/HeaderLogoutButton';
 
@@ -46,7 +47,8 @@ function AuthStack() {
 }
 
 function MainTabs({ role }) {
-  const tabs = {
+
+  const tabs = useMemo(() => ({
     student: [
       { name: 'Monitoring', component: StudentMonitoring },
       { name: 'Rating', component: StudentRating },
@@ -57,7 +59,7 @@ function MainTabs({ role }) {
       { name: 'Reports', component: LecturerReport },
       { name: 'Monitoring', component: LecturerMonitoring },
       { name: 'Rating', component: LecturerRating },
-      { name: 'Student Attendance', component: LecturerAttendance }
+      { name: 'Attendance', component: LecturerAttendance }
     ],
     prl: [
       { name: 'Courses', component: PrlCourses },
@@ -74,7 +76,7 @@ function MainTabs({ role }) {
       { name: 'Lectures', component: PlLectures },
       { name: 'Rating', component: PlRating }
     ]
-  };
+  }), []);
 
   const roleTabs = tabs[role] || tabs.student;
 
@@ -83,20 +85,20 @@ function MainTabs({ role }) {
       screenOptions={({ route }) => ({
         headerShown: true,
         headerRight: () => <HeaderLogoutButton />,
-        headerStyle: { backgroundColor: '#fff', elevation: 0, shadowOpacity: 0 },
+        headerStyle: { backgroundColor: '#fff' },
         tabBarActiveTintColor: '#007AFF',
         tabBarInactiveTintColor: '#888',
+
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+          let iconName = 'help-circle-outline';
 
           if (route.name === 'Monitoring') iconName = focused ? 'bar-chart' : 'bar-chart-outline';
           else if (route.name === 'Rating') iconName = focused ? 'star' : 'star-outline';
-          else if (route.name.includes('Attendance')) iconName = focused ? 'calendar' : 'calendar-outline';
+          else if (route.name === 'Attendance') iconName = focused ? 'calendar' : 'calendar-outline';
           else if (route.name === 'Classes') iconName = focused ? 'school' : 'school-outline';
           else if (route.name === 'Reports') iconName = focused ? 'document-text' : 'document-text-outline';
           else if (route.name === 'Courses') iconName = focused ? 'library' : 'library-outline';
           else if (route.name === 'Lectures') iconName = focused ? 'videocam' : 'videocam-outline';
-          else iconName = 'help-circle-outline'; 
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -109,11 +111,16 @@ function MainTabs({ role }) {
   );
 }
 
+/* ---------------- ROOT NAVIGATOR ---------------- */
 export default function AppNavigator() {
   const { user, role, loading } = useAuth();
 
   if (loading) {
-    return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><ActivityIndicator size="large" color="#007AFF" /></View>;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#007AFF" />
+      </View>
+    );
   }
 
   return (
