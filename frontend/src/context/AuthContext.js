@@ -55,14 +55,19 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const logout = async () => {
-    try {
-      clearSubs();
-      await signOut(auth);
-    } catch (error) {
-      console.log("Logout error:", error);
-    }
-  };
+ const logout = async () => {
+  try {
+    clearSubs();
+    await signOut(auth);
+
+    
+    setUser(null);
+    setRole(null);
+
+  } catch (error) {
+    console.log("Logout error:", error);
+  }
+};
 
 
   if (loading) {

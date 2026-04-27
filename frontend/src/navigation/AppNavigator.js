@@ -110,8 +110,6 @@ function MainTabs({ role }) {
     </Tab.Navigator>
   );
 }
-
-/* ---------------- ROOT NAVIGATOR ---------------- */
 export default function AppNavigator() {
   const { user, role, loading } = useAuth();
 
