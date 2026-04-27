@@ -7,6 +7,8 @@
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+
+    "platforms": ["ios", "android", "web"],
     "splash": {
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
