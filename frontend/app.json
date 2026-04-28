@@ -4,11 +4,14 @@
     "slug": "luct-reporting-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo.png",
+    "icon": "./assets/images/app-icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "splash": {
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
@@ -19,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.png",
+        "foregroundImage": "./assets/images/app-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -32,6 +35,10 @@
       "eas": {
         "projectId": "fef4e471-fc9b-4f45-b238-cbad9d1f0c9e"
       }
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "owner": "lehloara"
   }
 }

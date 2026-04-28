@@ -47,7 +47,6 @@ function AuthStack() {
 }
 
 function MainTabs({ role }) {
-
   const tabs = useMemo(() => ({
     student: [
       { name: 'Monitoring', component: StudentMonitoring },
@@ -85,6 +84,7 @@ function MainTabs({ role }) {
       screenOptions={({ route }) => ({
         headerShown: true,
         headerRight: () => <HeaderLogoutButton />,
+
         headerStyle: { backgroundColor: '#fff' },
         tabBarActiveTintColor: '#007AFF',
         tabBarInactiveTintColor: '#888',
@@ -105,14 +105,18 @@ function MainTabs({ role }) {
       })}
     >
       {roleTabs.map(({ name, component }) => (
-        <Tab.Screen key={name} name={name} component={component} />
+        <Tab.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{ unmountOnBlur: true }}
+        />
       ))}
     </Tab.Navigator>
   );
 }
 export default function AppNavigator() {
   const { user, role, loading } = useAuth();
-
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -120,10 +124,13 @@ export default function AppNavigator() {
       </View>
     );
   }
-
   return (
     <NavigationContainer>
-      {user ? <MainTabs role={role} /> : <AuthStack />}
+      {user ? (
+        <MainTabs key={user?.uid} role={role} />
+      ) : (
+        <AuthStack />
+      )}
     </NavigationContainer>
   );
 }
